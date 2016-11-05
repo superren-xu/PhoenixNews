@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_find"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="qianfeng.com.phoenixnews.shownews.view.FindActivity">
+
+    <TextView
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:text="猜你喜欢"
+        android:textColor="@color/colorAccent"
+        android:textSize="24sp"/>
+
+    <ListView
+        android:id="@+id/findActivity_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/topBar"></ListView>
+</RelativeLayout>
