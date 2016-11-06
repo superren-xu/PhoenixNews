@@ -19,6 +19,16 @@ public class FindLVItemBean {
     private int slideCount;
     //item的类型
     private int type;
+    //内容链接
+    private String commentsUrl;
+
+    public String getCommentsUrl() {
+        return commentsUrl;
+    }
+
+    public void setCommentsUrl(String commentsUrl) {
+        this.commentsUrl = commentsUrl;
+    }
 
     public FindLVItemBean() {
     }
