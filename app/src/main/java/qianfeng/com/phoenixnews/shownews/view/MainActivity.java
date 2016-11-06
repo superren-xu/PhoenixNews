@@ -126,6 +126,7 @@ public class MainActivity extends BaseActivity implements IMainView {
         mIV_Find.setImageResource(R.drawable.tab_menu_item_read_press);
         mTV_Find.setTextColor(Color.RED);
         setBottomStyle(Constant.FIND);
+        startActivity(new Intent(this,FindActivity.class));
     }
 
     public void mine(View view) {

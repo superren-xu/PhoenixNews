@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import qianfeng.com.phoenixnews.bean.Classify;
+import qianfeng.com.phoenixnews.bean.FindLVItemBean;
 import qianfeng.com.phoenixnews.bean.LVItemBean;
 
 /**
@@ -519,6 +520,70 @@ public class ParseJson {
                 lvItemBean.setTag(Constant.GENERAL);
                 lvItemBean.setType(Constant.IMAGE_LL);
                 list.add(lvItemBean);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public static List<FindLVItemBean> parseJson2FindLVItem(String json) {
+        List<FindLVItemBean> list = new ArrayList<>();
+        try {
+            JSONArray item = new JSONObject(json).optJSONArray("item");
+            for (int i = 0; i < item.length(); i++) {
+                JSONObject jsonObject = item.optJSONObject(i);
+                if (jsonObject.has("style")) {
+                    if ("slides".equals(jsonObject.optJSONObject("style").optString("type"))) {
+                        String title = jsonObject.optString("title");
+                        String name = jsonObject.optJSONObject("recommendChannel").optString("name");
+                        String commentsUrl = jsonObject.optString("commentsUrl");
+                        String commentsall = jsonObject.optString("commentsall");
+                        JSONObject style = jsonObject.optJSONObject("style");
+                        JSONArray images = style.optJSONArray("images");
+                        String[] imgs = new String[images.length()];
+                        for (int j = 0; j < images.length(); j++) {
+                            imgs[j] = images.optString(j);
+                        }
+                        int slideCount = style.optInt("slideCount");
+                        FindLVItemBean findLVItemBean = new FindLVItemBean();
+                        findLVItemBean.setTitle(title);
+                        findLVItemBean.setName(name);
+                        findLVItemBean.setCommentsUrl(commentsUrl);
+                        findLVItemBean.setCommentsall(commentsall);
+                        findLVItemBean.setImgs(imgs);
+                        findLVItemBean.setSlideCount(slideCount);
+                        findLVItemBean.setType(Constant.FIND_PHOTO);
+                        list.add(findLVItemBean);
+                    } else {
+                        String thumbnail = jsonObject.optString("thumbnail");
+                        String title = jsonObject.optString("title");
+                        String commentsUrl = jsonObject.optString("commentsUrl");
+                        String commentsall = jsonObject.optString("commentsall");
+                        String name = jsonObject.optJSONObject("recommendChannel").optString("name");
+                        FindLVItemBean findLVItemBean = new FindLVItemBean();
+                        findLVItemBean.setThumbnail(thumbnail);
+                        findLVItemBean.setTitle(title);
+                        findLVItemBean.setCommentsUrl(commentsUrl);
+                        findLVItemBean.setCommentsall(commentsall);
+                        findLVItemBean.setName(name);
+                        findLVItemBean.setType(Constant.FIND_PHOTO_TEXT);
+                        list.add(findLVItemBean);
+                    }
+                } else {
+                    String thumbnail = jsonObject.optString("thumbnail");
+                    String title = jsonObject.optString("title");
+                    String commentsUrl = jsonObject.optString("commentsUrl");
+                    String commentsall = jsonObject.optString("commentsall");
+                    FindLVItemBean findLVItemBean = new FindLVItemBean();
+                    findLVItemBean.setThumbnail(thumbnail);
+                    findLVItemBean.setTitle(title);
+                    findLVItemBean.setCommentsUrl(commentsUrl);
+                    findLVItemBean.setCommentsall(commentsall);
+                    findLVItemBean.setName("自定义");
+                    findLVItemBean.setType(Constant.FIND_PHOTO_TEXT);
+                    list.add(findLVItemBean);
+                }
             }
         } catch (JSONException e) {
             e.printStackTrace();

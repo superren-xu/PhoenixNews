@@ -52,4 +52,15 @@ public class Constant {
     public static final String ACTION_UP = "up";
     public static final String ACTION_DOWN = "down";
     public static final int VIDEOSIZE = 20;
+
+    //FindItemBean类型
+    public static final int FIND_PHOTO_TEXT = 1;
+    public static final int FIND_PHOTO = 2;
+    public static final int FIND_TEXT = 3;
+
+    //findactivity接口地址
+    public static final String FIND_URL = "http://api.irecommend.ifeng.com/read.php?gv=5.3.1&av=5.3.1&uid=869923023280566&deviceid=869923023280566&proid=ifengnews&os=android_22&df=androidphone&vt=5&screen=";
+    public static final String FIND_ACTION_DOWN = "down";
+    public static final String FIND_ACTION_UP = "up";
+    public static final String FIND_ACTION_DEFAULT = "default";
 }
